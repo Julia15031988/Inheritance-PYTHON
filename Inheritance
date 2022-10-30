@@ -1,0 +1,203 @@
+#1
+
+#class inheritance in programming
+#basic class
+class BaseClass:
+    #attribute of base class
+    name_base = "Class BaseClass"
+    #attribute of specimen of baseclass
+    def say_base(self):
+        print("The method say_base()")
+#The derived class
+class NewClass(BaseClass):
+    name_new="Class NewClass"
+    def say_new(self):
+        print("The method say_new()")
+#The specimen of basic class
+obj_base = BaseClass()
+#The specimen of derivative class
+obj_new = NewClass()
+print ("Class	BaseClass and specimen	obj_base:")
+#the field of basic class
+print(BaseClass.name_base)
+#the method of specimen of basic class
+obj_base.say_base()
+print ("\n The class NewClass and specimen obj_new" )
+#the field of derivative class
+print(NewClass.name_base)
+#the method of specimen of new class
+obj_new.say_base()
+ #the derivative field and method
+print(NewClass.name_new)
+obj_new.say_new()
+
+
+
+#2
+
+#changing of Base Calss
+#Basic class
+class BaseClass:
+    #field of the class
+    name = "FIELD NAME"
+    #the method of specimen of basic class
+    def say(self):
+        print ("Method SAY()")
+#the derived class
+class NewClass(BaseClass):
+    pass
+#the specimen of derived class
+obj=NewClass()
+#the field of derived class
+print (NewClass.name)
+#method of specimen of derived class
+obj.say()
+#create function
+def hello(self):
+    print("The NEW METHOD HELLO() ")
+#changing refering to the function in basic class
+BaseClass.say=hello
+#changing value of the field in basic class
+BaseClass.name = ("THE NEW VALUE OF THE NAME")
+#checking fields in derivative class
+print(NewClass.name)
+#calling for the method from derivative class
+obj.say()
+
+
+
+#3
+#Overriding fields and methods
+#creating basic class
+class BaseClass:
+    #field of basic class
+    name="Field of the Basic Class"
+    def say(self):
+        print ("The method SAY() of the Basic Class")
+#derivative class
+class NewClass(BaseClass):
+    # field of derivative class
+    name = "Field of the NEW Class"
+    def say(self):
+        print("The method SAY() of the New Class")
+#the specimen of the basic class
+obj_base=BaseClass()
+#the specimen of derivative class
+obj_new=NewClass()
+#atttributes of specimen of the basic class
+print(obj_base.name)
+obj_base.say()
+#atttributes of specimen of the new class
+print(obj_new.name)
+obj_new.say()
+
+
+
+#4
+#Overriding of the methods
+#basic class
+class BaseClass:
+    def __init__(self, num):
+        self.id=num
+    def get(self):
+        print ("ID:", self.id)
+    #the method of specimen of basic class
+    def show(self):
+        print ("The field of the specimen of Basic CLass")
+        self.get()
+#derivative class
+class NewClass(BaseClass):
+    def __init__(self, num, txt):
+        super().__init__(num)
+        self.name=txt
+    def get(self):
+        super().get()
+        print ("NAME", self.name)
+# the specimen of basic class
+obj_base=BaseClass(1)
+print ("callin g for the method SHOW  from specimen of BASECLASS")
+obj_base.show()
+#the specimen of derivative class
+obj_new=NewClass(10, "TENNNN")
+print ("callin g for the method SHOW  from specimen of NEWCLASS")
+obj_new.show()
+
+
+#5
+
+#inheritance some basic classes
+#first basic class
+class BoxSize:
+    #constructor
+    def __init__(self, width,height, depth):
+        #giving the values for  fields
+        self.width = width
+        self.height = height
+        self.depth = depth
+    #method for calculating the volume
+    def volume(self):
+        #the result
+        return self.width*self.height*self.depth
+    #method for reflection the results
+    def show(self):
+        #fields
+        print ("the parameters of the box are: ")
+        print ("The width", self.width)
+        print ("The height", self.height)
+        print ("The depth ", self.depth)
+        print ("The volume  ", self.volume())
+
+#second class
+class BoxParams:
+    def __init__(self,weight, color):
+        self.weight=weight
+        self.color=color
+    def show(self):
+        print ("The addidtional paramrters of the Box: ")
+        print ("The weight :", self.weight)
+        print ("The color of the box: ", self.color)
+
+#Creating the derivative class
+class Box(BoxSize, BoxParams):
+    #constructor
+    def __init__(self, width, height,depth,weight, color):
+        BoxSize. __init__(self,width, height,depth)
+        BoxParams. __init__(self, weight, color)
+        #calling the method show()
+        self.show()
+
+    def show(self):
+       BoxSize.show(self)
+       BoxParams.show(self)
+
+obj=Box(10,20,30,5, "green")
+
+
+
+#6
+#Multi inheritance
+#The description of the classes
+class Alpha:
+    def hi():
+        print("Class alpha")
+class Bravo:
+    def hi():
+        print("Class Bravo")
+class Charlie:
+    def hi():
+        print ("Class Charlie")
+class Delta(Alpha):
+    pass
+class Echo(Delta):
+    pass
+class Foxtrot (Bravo,Alpha):
+    pass
+class Golf(Foxtrot):
+    pass
+class Hotel(Echo, Charlie, Golf):
+    pass
+#calling for functions
+Echo.hi()
+Golf.hi()
+Hotel.hi()
+print(Hotel.__mro__)
